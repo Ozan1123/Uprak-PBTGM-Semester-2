@@ -87,3 +87,5 @@ widget-keuangan
 This project is open source.
 
 ---
+
+Kicau_Orgspark 2026/2027
