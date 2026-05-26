@@ -6,15 +6,18 @@ const { contextBridge, ipcRenderer } = require('electron');
  * Akses dari React: window.api.getTransaksi(), dst.
  */
 contextBridge.exposeInMainWorld('api', {
-  // Data fetching
   getTransaksi: () => ipcRenderer.invoke('get-transaksi'),
   getRingkasan: () => ipcRenderer.invoke('get-ringkasan'),
 
-  // Data mutation
   simpanTransaksi: (data) => ipcRenderer.invoke('simpan-transaksi', data),
   hapusTransaksi: (id) => ipcRenderer.invoke('hapus-transaksi', id),
 
-  // Window controls
+  // ─── Pembayaran Prioritas API ───────────────────────────────────────
+  getCicilan: () => ipcRenderer.invoke('get-cicilan'),
+  simpanCicilan: (data) => ipcRenderer.invoke('simpan-cicilan', data),
+  updateCicilan: (id, data) => ipcRenderer.invoke('update-cicilan', id, data),
+  hapusCicilan: (id) => ipcRenderer.invoke('hapus-cicilan', id),
+
   closeWindow: () => ipcRenderer.invoke('close-window'),
   resizeWindow: (width, height) => ipcRenderer.invoke('resize-window', width, height),
 });

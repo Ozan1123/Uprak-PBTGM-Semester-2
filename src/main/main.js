@@ -107,6 +107,23 @@ function setupIPC() {
     return database.deleteById(id);
   });
 
+  // ─── Pembayaran Prioritas IPC Handlers ─────────────────────────
+  ipcMain.handle('get-cicilan', () => {
+    return database.getCicilanWithPriority();
+  });
+
+  ipcMain.handle('simpan-cicilan', (_event, data) => {
+    return database.insertCicilan(data);
+  });
+
+  ipcMain.handle('update-cicilan', (_event, id, data) => {
+    return database.updateCicilan(id, data);
+  });
+
+  ipcMain.handle('hapus-cicilan', (_event, id) => {
+    return database.deleteCicilan(id);
+  });
+
   ipcMain.handle('close-window', () => {
     if (mainWindow) {
       mainWindow.hide();
