@@ -752,7 +752,7 @@ export default function App() {
                       </h2>
                     </div>
                     <div className="px-4 py-2 bg-white rounded-xl text-dark-purple font-bold text-sm shadow-lg flex items-center gap-3">
-                      <span className="opacity-40 uppercase text-[10px]">Saldomu Hari Ini</span>
+                      <span className="opacity-60 uppercase text-xs">Saldomu Hari Ini</span>
                       {formatIDR(ringkasan.saldo)}
                     </div>
                   </div>
@@ -760,14 +760,14 @@ export default function App() {
                   <div className="flex gap-8 border-b border-white/10 pb-2">
                     <button 
                       onClick={() => setView('pemasukan')}
-                      className={`pb-2 text-sm font-bold transition-all relative cursor-pointer ${view === 'pemasukan' ? 'text-white' : 'text-white/40'}`}
+                      className={`pb-2 text-sm font-bold transition-all relative cursor-pointer ${view === 'pemasukan' ? 'text-white' : 'text-white/60'}`}
                     >
                       Pendapatan
                       {view === 'pemasukan' && <motion.div layoutId="tab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-white rounded-full" />}
                     </button>
                     <button 
                       onClick={() => setView('pengeluaran')}
-                      className={`pb-2 text-sm font-bold transition-all relative cursor-pointer ${view === 'pengeluaran' ? 'text-white' : 'text-white/40'}`}
+                      className={`pb-2 text-sm font-bold transition-all relative cursor-pointer ${view === 'pengeluaran' ? 'text-white' : 'text-white/60'}`}
                     >
                       Pengeluaran
                       {view === 'pengeluaran' && <motion.div layoutId="tab" className="absolute bottom-[-2px] left-0 right-0 h-1 bg-white rounded-full" />}
@@ -777,9 +777,9 @@ export default function App() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4 flex-1">
                     <div className="flex flex-col gap-6 max-w-md">
                       <div className="flex items-center gap-4">
-                        <label className="w-24 text-xs font-bold uppercase tracking-widest text-lavender/40">Nominal</label>
+                        <label className="w-24 text-sm font-bold uppercase tracking-widest text-lavender/70">Nominal</label>
                         <div className="flex-1 relative">
-                          <span className="absolute left-0 bottom-2 text-xl font-bold opacity-30">Rp</span>
+                          <span className="absolute left-0 bottom-2 text-xl font-bold opacity-50">Rp</span>
                           <input 
                             type="number" 
                             value={formData.nominal}
@@ -791,18 +791,18 @@ export default function App() {
                       </div>
 
                       <div className="flex items-center gap-4">
-                        <label className="w-24 text-xs font-bold uppercase tracking-widest text-lavender/40">Keterangan</label>
+                        <label className="w-24 text-sm font-bold uppercase tracking-widest text-lavender/70">Keterangan</label>
                         <input 
                           type="text" 
                           value={formData.keterangan}
                           onChange={(e) => setFormData({...formData, keterangan: e.target.value})}
                           placeholder="Makan siang di kantor..."
-                          className="flex-1 bg-transparent border-b border-white/20 pb-2 text-sm focus:outline-none focus:border-white transition-colors italic"
+                          className="flex-1 bg-transparent border-b border-white/30 pb-2 text-sm focus:outline-none focus:border-white transition-colors italic placeholder-white/40"
                         />
                       </div>
 
                       <div className="flex items-start gap-4 mt-2">
-                        <label className="w-24 text-xs font-bold uppercase tracking-widest text-lavender/40 pt-2">Aset</label>
+                        <label className="w-24 text-sm font-bold uppercase tracking-widest text-lavender/70 pt-2">Aset</label>
                         <div className="flex flex-wrap gap-2">
                           {[
                             { id: 'tunai', icon: Banknote, label: 'Tunai' },
@@ -812,10 +812,10 @@ export default function App() {
                             <button 
                               key={item.id}
                               onClick={() => setFormData({...formData, aset: item.id})}
-                              className={`px-4 py-2 rounded-full border text-xs font-bold gap-2 flex items-center transition-all cursor-pointer ${
+                              className={`px-4 py-2 rounded-full border text-sm font-bold gap-2 flex items-center transition-all cursor-pointer ${
                                 formData.aset === item.id 
                                 ? 'bg-white text-primary border-white scale-105 shadow-md' 
-                                : 'bg-transparent text-white/50 border-white/20 hover:border-white/50'
+                                : 'bg-transparent text-white/70 border-white/30 hover:border-white/60'
                               }`}
                             >
                               <item.icon size={14} />
@@ -829,9 +829,9 @@ export default function App() {
                         <>
                           {/* Pajak (Opsional) */}
                           <div className="flex items-center gap-4">
-                            <label className="w-24 text-xs font-bold uppercase tracking-widest text-lavender/40">Pajak</label>
+                            <label className="w-24 text-sm font-bold uppercase tracking-widest text-lavender/70">Pajak</label>
                             <div className="flex-1 relative">
-                              <span className="absolute left-0 bottom-2 text-sm font-bold opacity-30"><Percent size={14} /></span>
+                              <span className="absolute left-0 bottom-2 text-sm font-bold opacity-50"><Percent size={14} /></span>
                               <input 
                                 type="number" 
                                 value={formData.pajak}
@@ -839,18 +839,18 @@ export default function App() {
                                 placeholder="Opsional (contoh: 5000)"
                                 className="w-full bg-transparent border-b border-white/20 pb-2 pl-6 text-sm font-bold font-display focus:outline-none focus:border-white transition-colors"
                               />
-                              <span className="absolute right-0 bottom-2 text-[10px] text-lavender/30 italic">Rp</span>
+                              <span className="absolute right-0 bottom-2 text-xs text-lavender/50 italic">Rp</span>
                             </div>
                           </div>
                           {formData.pajak && parseFloat(formData.pajak) > 0 && (
-                            <div className="-mt-3 ml-28 text-[10px] text-lavender/40 italic">
+                            <div className="-mt-3 ml-28 text-xs text-lavender/60 italic">
                               Total: {formatIDR(parseFloat(formData.nominal || 0) + parseFloat(formData.pajak))} (Nominal + Pajak)
                             </div>
                           )}
 
                           {/* Tingkat Prioritas */}
                           <div className="flex flex-col gap-3 mt-2">
-                            <label className="text-xs font-bold uppercase tracking-widest text-lavender/40">Tingkat Prioritas</label>
+                            <label className="text-sm font-bold uppercase tracking-widest text-lavender/70">Tingkat Prioritas</label>
                             <div className="flex gap-3">
                               {[
                                 { id: 'tinggi', colorClass: 'bg-danger border-danger text-danger', activeClass: 'bg-danger border-danger text-white', label: 'Tinggi' },
@@ -860,10 +860,10 @@ export default function App() {
                                 <button
                                   key={item.id}
                                   onClick={() => setFormData({...formData, prioritas: item.id})}
-                                  className={`flex-1 py-3 rounded-xl border-2 text-[10px] font-black uppercase tracking-tighter transition-all cursor-pointer ${
+                                  className={`flex-1 py-3 rounded-xl border-2 text-xs font-black uppercase tracking-tighter transition-all cursor-pointer ${
                                     formData.prioritas === item.id
                                     ? `${item.activeClass} shadow-lg scale-105`
-                                    : `bg-transparent ${item.colorClass.split(' ').slice(1).join(' ')} opacity-40 hover:opacity-80`
+                                    : `bg-transparent ${item.colorClass.split(' ').slice(1).join(' ')} opacity-60 hover:opacity-90`
                                   }`}
                                 >
                                   {item.label}
@@ -886,7 +886,7 @@ export default function App() {
 
                     <div className="bg-lavender-soft/10 rounded-[32px] p-8 border border-white/5 flex flex-col gap-6">
                       <div className="flex justify-between items-center">
-                        <span className="text-xs font-bold uppercase tracking-widest text-white">Kategori</span>
+                        <span className="text-sm font-bold uppercase tracking-widest text-white">Kategori</span>
                         <button 
                           onClick={() => setShowAddKategori(!showAddKategori)}
                           className="text-[10px] font-bold text-dark-purple bg-white px-3 py-1.5 rounded-lg hover:bg-white/90 transition-all cursor-pointer shadow-sm flex items-center gap-1"
@@ -948,10 +948,10 @@ export default function App() {
                            <button 
                              key={cat}
                              onClick={() => setFormData({...formData, kategori: cat})}
-                             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                                formData.kategori === cat 
                                ? 'bg-lavender text-dark-purple shadow-md' 
-                               : 'bg-white/5 text-white/40 hover:bg-white/10'
+                               : 'bg-white/10 text-white/60 hover:bg-white/20'
                              } ${customKategori.includes(cat) ? 'border border-dashed border-white/20' : ''}`}
                            >
                              {cat}
@@ -959,7 +959,7 @@ export default function App() {
                          ))}
                       </div>
                       <div className="mt-auto p-4 bg-primary/30 rounded-2xl border border-white/10">
-                        <div className="flex items-center gap-3 text-white/40 italic text-xs">
+                        <div className="flex items-center gap-3 text-white/60 italic text-sm">
                           <MoreHorizontal size={16} />
                           Tips: Pilih kategori yang sesuai untuk analisis keuangan yang lebih akurat
                         </div>
@@ -994,7 +994,7 @@ export default function App() {
                           <CalendarClock size={22} className="text-amber-400" />
                           Pembayaran Prioritas
                         </h2>
-                        <p className="text-[10px] text-lavender/40 mt-0.5">Ranking & saran otomatis berdasarkan perhitungan SPK (SAW)</p>
+                        <p className="text-xs text-lavender/60 mt-0.5">Ranking & saran otomatis berdasarkan perhitungan SPK (SAW)</p>
                       </div>
                     </div>
                     <button 
@@ -1015,7 +1015,7 @@ export default function App() {
                             <Wallet size={20} />
                           </div>
                           <div>
-                            <div className="text-[10px] text-lavender/40 uppercase tracking-widest font-medium">Total Pembayaran</div>
+                            <div className="text-xs text-lavender/70 uppercase tracking-widest font-medium">Total Pembayaran</div>
                             <div className="text-lg font-display font-bold text-white">{formatIDR(totalPembayaranBulanan)}</div>
                           </div>
                         </div>
@@ -1026,8 +1026,8 @@ export default function App() {
                             <TrendingUp size={20} />
                           </div>
                           <div>
-                            <div className="text-[10px] text-lavender/40 uppercase tracking-widest font-medium">Total Item</div>
-                            <div className="text-lg font-display font-bold text-white">{pembayaranList.length} <span className="text-xs font-normal text-lavender/40">pembayaran</span></div>
+                            <div className="text-xs text-lavender/70 uppercase tracking-widest font-medium">Total Item</div>
+                            <div className="text-lg font-display font-bold text-white">{pembayaranList.length} <span className="text-sm font-normal text-lavender/60">pembayaran</span></div>
                           </div>
                         </div>
                       </div>
@@ -1037,9 +1037,9 @@ export default function App() {
                             <ShieldAlert size={20} />
                           </div>
                           <div>
-                            <div className="text-[10px] text-lavender/40 uppercase tracking-widest font-medium">Mendesak</div>
+                            <div className="text-xs text-lavender/70 uppercase tracking-widest font-medium">Mendesak</div>
                             <div className={`text-lg font-display font-bold ${pembayaranMendesak > 0 ? 'text-danger' : 'text-success'}`}>
-                              {pembayaranMendesak} <span className="text-xs font-normal text-lavender/40">pembayaran</span>
+                              {pembayaranMendesak} <span className="text-sm font-normal text-lavender/60">pembayaran</span>
                             </div>
                           </div>
                         </div>
@@ -1053,14 +1053,14 @@ export default function App() {
                     {/* Ranking Pembayaran (2/3) */}
                     <div className="col-span-2 bg-white rounded-[24px] p-5 shadow-xl text-dark-purple flex flex-col overflow-hidden">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-sm font-bold flex items-center gap-2">
+                        <h3 className="text-base font-bold flex items-center gap-2">
                           <Award size={16} className="text-primary" />
                           Ranking Pembayaran Prioritas
-                          <span className="text-[10px] font-normal opacity-40 px-2 py-0.5 bg-gray-100 rounded-full ml-1">
+                          <span className="text-xs font-normal opacity-50 px-2 py-0.5 bg-gray-100 rounded-full ml-1">
                             {pembayaranList.length} total
                           </span>
                         </h3>
-                        <div className="flex items-center gap-2 text-[9px] text-gray-400">
+                        <div className="flex items-center gap-2 text-[11px] text-gray-500">
                           <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-danger" /> ≤3 hari</div>
                           <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-warning" /> 4-10 hari</div>
                           <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-success" /> &gt;10 hari</div>
@@ -1107,15 +1107,15 @@ export default function App() {
 
                               {/* Info */}
                               <div className="flex-1 min-w-0">
-                                <div className="font-bold text-sm">{item.nama}</div>
-                                <div className="text-[10px] text-gray-400 flex items-center gap-2 mt-0.5">
+                                <div className="font-bold text-base">{item.nama}</div>
+                                <div className="text-xs text-gray-500 flex items-center gap-2 mt-0.5">
                                   <span>{item.kategori}</span>
                                   <span>•</span>
                                   <span>Jatuh tempo: {formatTanggalJatuhTempo(item)}</span>
                                   {item.keterangan && (
                                     <>
                                       <span>•</span>
-                                      <span className="italic truncate max-w-[100px]">{item.keterangan}</span>
+                                      <span className="italic truncate max-w-[150px]">{item.keterangan}</span>
                                     </>
                                   )}
                                 </div>
@@ -1123,8 +1123,8 @@ export default function App() {
 
                               {/* Amount & countdown */}
                               <div className="text-right shrink-0">
-                                <div className="font-display font-bold text-sm">{formatIDR(item.nominal)}</div>
-                                <div className={`text-[10px] font-bold ${
+                                <div className="font-display font-bold text-base">{formatIDR(item.nominal)}</div>
+                                <div className={`text-xs font-bold ${
                                   item.prioritas === 'tinggi' ? 'text-danger' :
                                   item.prioritas === 'sedang' ? 'text-warning' :
                                   'text-success'
@@ -1134,7 +1134,7 @@ export default function App() {
                               </div>
 
                               {/* Badge */}
-                              <span className={`px-2 py-1 ${getPriorityBadge(item.prioritas)} rounded-lg font-bold uppercase tracking-tighter text-[9px] shrink-0`}>
+                              <span className={`px-2.5 py-1 ${getPriorityBadge(item.prioritas)} rounded-lg font-bold uppercase tracking-tighter text-[11px] shrink-0`}>
                                 {getPriorityLabel(item.prioritas)}
                               </span>
 
@@ -1164,7 +1164,7 @@ export default function App() {
                     {/* Saran Lengkap (1/3) */}
                     <div className="flex flex-col gap-4 min-h-0">
                       <div className="bg-white rounded-[24px] p-5 shadow-xl text-dark-purple flex-1 flex flex-col overflow-hidden">
-                        <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                        <h3 className="text-base font-bold mb-3 flex items-center gap-2">
                           <Lightbulb size={16} className="text-amber-500" />
                           Saran Keuangan
                         </h3>
@@ -1172,13 +1172,13 @@ export default function App() {
                           {saranList.map((s, i) => (
                             <div 
                               key={i} 
-                              className={`p-3 rounded-xl border text-xs leading-relaxed ${
+                              className={`p-3 rounded-xl border text-sm leading-relaxed ${
                                 s.type === 'danger' ? 'bg-danger/5 border-danger/20' : 
                                 s.type === 'warning' ? 'bg-warning/5 border-warning/20' : 
                                 'bg-success/5 border-success/20'
                               }`}
                             >
-                              <div className={`flex items-center gap-1.5 font-bold text-[10px] uppercase tracking-wider mb-1 ${
+                              <div className={`flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider mb-1 ${
                                 s.type === 'danger' ? 'text-danger' : s.type === 'warning' ? 'text-warning' : 'text-success'
                               }`}>
                                 {s.icon}
@@ -1192,21 +1192,21 @@ export default function App() {
 
                       {/* Legend */}
                       <div className="bg-white/10 backdrop-blur-sm rounded-[20px] p-4 border border-white/10">
-                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-lavender/50 mb-2">Cara Kerja SPK</h4>
-                        <div className="space-y-2 text-[10px] text-lavender/40">
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-lavender/70 mb-2">Cara Kerja SPK</h4>
+                        <div className="space-y-2 text-xs text-lavender/60">
                           <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded bg-danger shrink-0" />
-                            <span><strong className="text-white/60">Tinggi</strong> — ≤3 hari / sudah lewat</span>
+                            <span><strong className="text-white/80">Tinggi</strong> — ≤3 hari / sudah lewat</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded bg-warning shrink-0" />
-                            <span><strong className="text-white/60">Sedang</strong> — 4-10 hari ke jatuh tempo</span>
+                            <span><strong className="text-white/80">Sedang</strong> — 4-10 hari ke jatuh tempo</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded bg-success shrink-0" />
-                            <span><strong className="text-white/60">Rendah</strong> — &gt;10 hari ke jatuh tempo</span>
+                            <span><strong className="text-white/80">Rendah</strong> — &gt;10 hari ke jatuh tempo</span>
                           </div>
-                          <p className="pt-1 border-t border-white/5 italic text-lavender/30">
+                          <p className="pt-1 border-t border-white/10 italic text-lavender/50">
                             Dihitung otomatis dari tanggal lokal perangkatmu
                           </p>
                         </div>
